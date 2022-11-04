@@ -16,7 +16,7 @@ CREATE TABLE abono (
 
 ALTER TABLE abono ADD CONSTRAINT abono_pk PRIMARY KEY ( id_movimiento );
 
-CREATE TABLE "solicitud " (
+CREATE TABLE solicitud (
     id_solicitud    INTEGER NOT NULL,
     fecha           DATE NOT NULL,
     cedula_persona  VARCHAR2(20) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE "solicitud " (
     id_producto     VARCHAR2(24) NOT NULL
 );
 
-ALTER TABLE "solicitud " ADD CONSTRAINT solicitud_pk PRIMARY KEY ( id_solicitud );
+ALTER TABLE solicitud ADD CONSTRAINT solicitud_pk PRIMARY KEY ( id_solicitud );
 
 
 
