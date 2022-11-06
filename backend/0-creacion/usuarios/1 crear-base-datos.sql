@@ -71,7 +71,8 @@ CREATE TABLE persona (
     primer_apellido    VARCHAR2(20) NOT NULL,
     segundo_apellido   VARCHAR2(20) NOT NULL,
     correo_electronico VARCHAR2(100),
-    id_ciudad          INTEGER NOT NULL
+    id_ciudad          INTEGER NOT NULL,
+    direccion          VARCHAR2(100) NOT NULL
 );
 
 ALTER TABLE persona ADD CONSTRAINT persona_pk PRIMARY KEY ( cedula );
