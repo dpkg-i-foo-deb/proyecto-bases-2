@@ -67,10 +67,10 @@ ALTER TABLE pais ADD CONSTRAINT pais_pk PRIMARY KEY ( id_pais );
 CREATE TABLE persona (
     cedula             VARCHAR2(20) NOT NULL,
     primer_nombre      VARCHAR2(20) NOT NULL,
-    segundo_nombre     VARCHAR2(20) NOT NULL,
+    segundo_nombre     VARCHAR2(20),
     primer_apellido    VARCHAR2(20) NOT NULL,
     segundo_apellido   VARCHAR2(20) NOT NULL,
-    correo_electronico VARCHAR2(100),
+    correo_electronico VARCHAR2(100) NOT NULL,
     id_ciudad          INTEGER NOT NULL,
     direccion          VARCHAR2(100) NOT NULL
 );
