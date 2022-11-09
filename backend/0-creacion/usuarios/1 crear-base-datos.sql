@@ -33,18 +33,12 @@ ALTER TABLE departamento ADD CONSTRAINT departamento_pk PRIMARY KEY ( id_departa
 
 CREATE TABLE empleado (
     cedula_persona VARCHAR2(20) NOT NULL,
-    jefe           VARCHAR2(20),
-    tipo_id_tipo   INTEGER NOT NULL
+    jefe           VARCHAR2(80),
+    tipo_id_tipo   INTEGER NOT NULL,
+    sucursal_id_sucursal INTEGER NOT NULL
 );
 
 ALTER TABLE empleado ADD CONSTRAINT empleado_pk PRIMARY KEY ( cedula_persona );
-
-CREATE TABLE empresa (
-    id_empresa INTEGER NOT NULL,
-    nombre     VARCHAR2(100) NOT NULL
-);
-
-ALTER TABLE empresa ADD CONSTRAINT empresa_pk PRIMARY KEY ( id_empresa );
 
 CREATE TABLE factura (
     id_factura        INTEGER NOT NULL,
@@ -67,7 +61,7 @@ ALTER TABLE pais ADD CONSTRAINT pais_pk PRIMARY KEY ( id_pais );
 CREATE TABLE persona (
     cedula             VARCHAR2(20) NOT NULL,
     primer_nombre      VARCHAR2(20) NOT NULL,
-    segundo_nombre     VARCHAR2(20) NOT NULL,
+    segundo_nombre     VARCHAR2(20) ,
     primer_apellido    VARCHAR2(20) NOT NULL,
     segundo_apellido   VARCHAR2(20) NOT NULL,
     correo_electronico VARCHAR2(100),
