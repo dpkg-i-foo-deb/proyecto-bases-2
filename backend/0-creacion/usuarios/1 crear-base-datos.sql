@@ -33,7 +33,7 @@ ALTER TABLE departamento ADD CONSTRAINT departamento_pk PRIMARY KEY ( id_departa
 
 CREATE TABLE empleado (
     cedula_persona VARCHAR2(20) NOT NULL,
-    jefe           VARCHAR2(80),
+    jefe           VARCHAR2(20),
     tipo_id_tipo   INTEGER NOT NULL,
     sucursal_id_sucursal INTEGER NOT NULL
 );
