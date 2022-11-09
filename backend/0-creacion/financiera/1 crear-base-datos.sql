@@ -1,5 +1,5 @@
 -- Generado por Oracle SQL Developer Data Modeler 22.2.0.165.1149
---   en:        2022-11-03 23:15:33 CST
+--   en:        2022-11-08 18:21:26 COT
 --   sitio:      Oracle Database 11g
 --   tipo:      Oracle Database 11g
 
@@ -31,7 +31,8 @@ CREATE TABLE credito (
     producto_id_produtco  VARCHAR2(24) NOT NULL,
     forma_pago_forma_pago VARCHAR2(40) NOT NULL,
     tipo_id_tipo          VARCHAR2(20) NOT NULL,
-    monto_prestamo        FLOAT NOT NULL
+    monto_prestamo        FLOAT NOT NULL,
+    persona_cedula        VARCHAR2(22) NOT NULL
 );
 
 ALTER TABLE credito ADD CONSTRAINT credito_pk PRIMARY KEY ( producto_id_produtco );
@@ -94,7 +95,8 @@ CREATE TABLE seguro (
     periodo_duracion     INTEGER,
     tipo_seguro          VARCHAR2(20) NOT NULL,
     tipo_periodo         VARCHAR2(20) NOT NULL,
-    producto_id_produtco VARCHAR2(24) NOT NULL
+    producto_id_produtco VARCHAR2(24) NOT NULL,
+    persona_cedula       VARCHAR2(22) NOT NULL
 );
 
 ALTER TABLE seguro ADD CONSTRAINT seguro_pk PRIMARY KEY ( producto_id_produtco );

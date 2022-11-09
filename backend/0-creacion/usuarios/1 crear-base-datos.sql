@@ -64,7 +64,7 @@ CREATE TABLE persona (
     segundo_nombre     VARCHAR2(20) ,
     primer_apellido    VARCHAR2(20) NOT NULL,
     segundo_apellido   VARCHAR2(20) NOT NULL,
-    correo_electronico VARCHAR2(100),
+    correo_electronico VARCHAR2(100) NOT NULL,
     id_ciudad          INTEGER NOT NULL,
     direccion          VARCHAR2(100) NOT NULL
 );
