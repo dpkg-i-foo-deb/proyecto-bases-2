@@ -185,6 +185,9 @@ ALTER TABLE telefono
     ADD CONSTRAINT tipo_fkv1 FOREIGN KEY ( id_tipo )
         REFERENCES tipo ( id_tipo );
 
+--Corecciones 
+ALTER TABLE USUARIOS.EMPLEADO ADD CONSTRAINT FK_SUCURSAL FOREIGN KEY (SUCURSAL_ID_SUCURSAL) REFERENCES USUARIOS.SUCURSAL(ID_SUCURSAL);
+
 
 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
