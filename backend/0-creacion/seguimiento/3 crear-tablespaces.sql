@@ -1,0 +1,7 @@
+CREATE TABLESPACE TRANSACCIONES
+	DATAFILE 'transacciones.dbf'
+	SIZE 10m
+	AUTOEXTEND ON
+		-- No tenemos tanto disco
+		--MAXSIZE 51231m;
+		MAXSIZE 20m;
