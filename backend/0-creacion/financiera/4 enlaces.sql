@@ -1,0 +1,7 @@
+CREATE DATABASE LINK enlace_usuarios
+	CONNECT TO USUARIOS IDENTIFIED BY usuarios
+	USING 'usuarios:1521/xe';
+
+CREATE DATABASE LINK enlace_seguimiento
+	CONNECT TO SEGUIMIENTO IDENTIFIED BY seguimiento
+	USING 'seguimiento:1521/xe';
