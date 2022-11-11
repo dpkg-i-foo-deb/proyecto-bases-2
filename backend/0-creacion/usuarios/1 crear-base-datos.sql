@@ -123,7 +123,9 @@ CREATE TABLE turno_empleado (
 );
 
 ALTER TABLE turno_empleado ADD CONSTRAINT turno_empleado_pk PRIMARY KEY ( id_caja,
-                                                                          cedula_empleado );
+                                                                          cedula_empleado,
+                                                                          hora_inicio,
+                                                                          hora_fin );
 
 ALTER TABLE persona
     ADD CONSTRAINT ciudad_fk FOREIGN KEY ( id_ciudad )
