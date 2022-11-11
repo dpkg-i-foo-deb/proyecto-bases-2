@@ -82,7 +82,8 @@ ALTER TABLE producto_ofertado ADD CONSTRAINT producto_ofertado_pk PRIMARY KEY ( 
                                                                                 id_registro );
 
 CREATE TABLE registro_llamadas (
-    duracion        DATE NOT NULL,
+    hora_inicio        DATE NOT NULL,
+    hora_fin           DATE NOT NULL,
     id_registro     INTEGER NOT NULL,
     calificacion    SMALLINT NOT NULL,
     cedula_empleado VARCHAR2(20) NOT NULL,
