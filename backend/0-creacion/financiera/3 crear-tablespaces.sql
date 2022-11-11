@@ -17,12 +17,3 @@ CREATE TABLESPACE VENTAS
 		-- No tenemos un disco de 2TB
 		-- MAXSIZE 1903418m;
 		MAXSIZE 100m;
-
-
-CREATE TABLESPACE TRANSACCIONES
-	DATAFILE 'transacciones.dbf'
-	SIZE 10m
-	AUTOEXTEND ON 
-		-- No tenemos un disco de 51GB
-		--MAXSIZE 51231m;
-		MAXSIZE 100m;
