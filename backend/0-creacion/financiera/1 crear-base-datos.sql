@@ -188,6 +188,11 @@ ALTER TABLE transferencia
     ADD CONSTRAINT transferencia_movimiento_fk FOREIGN KEY ( movimiento_id_movimiento )
         REFERENCES movimiento ( id_movimiento );
 
+--Corecciones 
+ALTER TABLE FINANCIERA.CAJA RENAME COLUMN UBICACION TO NOMBRE;
+ALTER TABLE FINANCIERA.CAJA ADD SUCURSAL_ID_SUCURSAL NUMBER(38,0) NOT NULL;
+ALTER TABLE FINANCIERA.CAJA MODIFY NOMBRE VARCHAR2(20) NOT NULL;
+
 
 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
