@@ -56,5 +56,5 @@ CREATE OR REPLACE SYNONYM seguro FOR
 CREATE OR REPLACE SYNONYM abono FOR 
 	abono@enlace_seguimiento;
 	
-CREATE OR REPLACE SYNONYMM solicitud FOR
+CREATE OR REPLACE SYNONYM solicitud FOR
 	solicitud@enlace_seguimiento;
