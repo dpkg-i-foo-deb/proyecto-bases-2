@@ -19,7 +19,6 @@ ALTER TABLE caja ADD CONSTRAINT caja_pk PRIMARY KEY ( id_caja );
 CREATE TABLE consignacion (
     movimiento_id_movimiento INTEGER NOT NULL,
     fecha                    DATE,
-    cuenta_origen            VARCHAR2(24) NOT NULL,
     cuenta_destino           VARCHAR2(24) NOT NULL
 );
 
@@ -28,23 +27,23 @@ ALTER TABLE consignacion ADD CONSTRAINT consignacion_pk PRIMARY KEY ( movimiento
 CREATE TABLE credito (
     tasa_interes          FLOAT,
     plazo                 SMALLINT,
-    producto_id_produtco  VARCHAR2(24) NOT NULL,
+    producto_id_producto  VARCHAR2(24) NOT NULL,
     forma_pago_forma_pago VARCHAR2(40) NOT NULL,
     tipo_id_tipo          VARCHAR2(20) NOT NULL,
     monto_prestamo        FLOAT NOT NULL,
     persona_cedula        VARCHAR2(22) NOT NULL
 );
 
-ALTER TABLE credito ADD CONSTRAINT credito_pk PRIMARY KEY ( producto_id_produtco );
+ALTER TABLE credito ADD CONSTRAINT credito_pk PRIMARY KEY ( producto_id_producto );
 
 CREATE TABLE cuenta (
     saldo                  NUMBER,
     cliente_persona_cedula VARCHAR2(20) NOT NULL,
     tipo_id_tipo           VARCHAR2(20) NOT NULL,
-    producto_id_produtco   VARCHAR2(24) NOT NULL
+    producto_id_producto   VARCHAR2(24) NOT NULL
 );
 
-ALTER TABLE cuenta ADD CONSTRAINT cuenta_pk PRIMARY KEY ( producto_id_produtco );
+ALTER TABLE cuenta ADD CONSTRAINT cuenta_pk PRIMARY KEY ( producto_id_producto );
 
 CREATE TABLE empresa (
     nombre     VARCHAR2(40),
@@ -62,9 +61,8 @@ ALTER TABLE forma_pago ADD CONSTRAINT forma_pago_pk PRIMARY KEY ( forma_pago );
 CREATE TABLE movimiento (
     id_movimiento               INTEGER NOT NULL,
     cliente_persona_cedula      VARCHAR2(20) NOT NULL,
-    turno_empleado              VARCHAR2(20) NOT NULL,
-    monto                       NUMBER,
-    turno_empleado_caja_id_caja INTEGER NOT NULL
+    turno_empleado              INTEGER,
+    monto                       NUMBER
 );
 
 ALTER TABLE movimiento ADD CONSTRAINT movimiento_pk PRIMARY KEY ( id_movimiento );
@@ -79,10 +77,10 @@ CREATE TABLE pago (
 ALTER TABLE pago ADD CONSTRAINT pago_pk PRIMARY KEY ( movimiento_id_movimiento );
 
 CREATE TABLE producto (
-    id_produtco VARCHAR2(24) NOT NULL
+    id_producto VARCHAR2(24) NOT NULL
 );
 
-ALTER TABLE producto ADD CONSTRAINT producto_pk PRIMARY KEY ( id_produtco );
+ALTER TABLE producto ADD CONSTRAINT producto_pk PRIMARY KEY ( id_producto );
 
 CREATE TABLE retiro (
     movimiento_id_movimiento INTEGER NOT NULL,
@@ -94,12 +92,11 @@ ALTER TABLE retiro ADD CONSTRAINT retiro_pk PRIMARY KEY ( movimiento_id_movimien
 CREATE TABLE seguro (
     periodo_duracion     INTEGER,
     tipo_seguro          VARCHAR2(20) NOT NULL,
-    tipo_periodo         VARCHAR2(20) NOT NULL,
-    producto_id_produtco VARCHAR2(24) NOT NULL,
+    producto_id_producto VARCHAR2(24) NOT NULL,
     persona_cedula       VARCHAR2(22) NOT NULL
 );
 
-ALTER TABLE seguro ADD CONSTRAINT seguro_pk PRIMARY KEY ( producto_id_produtco );
+ALTER TABLE seguro ADD CONSTRAINT seguro_pk PRIMARY KEY ( producto_id_producto );
 
 CREATE TABLE tarjeta_de_credito (
     fecha_de_vencimiento   DATE,
@@ -107,10 +104,11 @@ CREATE TABLE tarjeta_de_credito (
     cliente_persona_cedula VARCHAR2(20) NOT NULL,
     cupo                   FLOAT,
     cupo_utilizado         FLOAT,
-    producto_id_produtco   VARCHAR2(24) NOT NULL
+    producto_id_producto   VARCHAR2(24) NOT NULL,
+    tipo_id_tipo           VARCHAR2(20) NOT NULL
 );
 
-ALTER TABLE tarjeta_de_credito ADD CONSTRAINT tarjeta_de_credito_pk PRIMARY KEY ( producto_id_produtco );
+ALTER TABLE tarjeta_de_credito ADD CONSTRAINT tarjeta_de_credito_pk PRIMARY KEY ( producto_id_producto );
 
 CREATE TABLE transferencia (
     movimiento_id_movimiento INTEGER NOT NULL,
@@ -121,12 +119,8 @@ CREATE TABLE transferencia (
 ALTER TABLE transferencia ADD CONSTRAINT transferencia_pk PRIMARY KEY ( movimiento_id_movimiento );
 
 ALTER TABLE consignacion
-    ADD CONSTRAINT consignacion_cuenta_fk FOREIGN KEY ( cuenta_origen )
-        REFERENCES cuenta ( producto_id_produtco );
-
-ALTER TABLE consignacion
     ADD CONSTRAINT consignacion_cuenta_fkv2 FOREIGN KEY ( cuenta_destino )
-        REFERENCES cuenta ( producto_id_produtco );
+        REFERENCES cuenta ( producto_id_producto );
 
 ALTER TABLE consignacion
     ADD CONSTRAINT consignacion_movimiento_fk FOREIGN KEY ( movimiento_id_movimiento )
@@ -137,24 +131,24 @@ ALTER TABLE credito
         REFERENCES forma_pago ( forma_pago );
 
 ALTER TABLE credito
-    ADD CONSTRAINT credito_producto_fk FOREIGN KEY ( producto_id_produtco )
-        REFERENCES producto ( id_produtco );
+    ADD CONSTRAINT credito_producto_fk FOREIGN KEY ( producto_id_producto )
+        REFERENCES producto ( id_producto );
 
 ALTER TABLE transferencia
     ADD CONSTRAINT cuenta_origen_fk FOREIGN KEY ( cuenta_origen )
-        REFERENCES cuenta ( producto_id_produtco );
+        REFERENCES cuenta ( producto_id_producto );
 
 ALTER TABLE cuenta
-    ADD CONSTRAINT cuenta_producto_fk FOREIGN KEY ( producto_id_produtco )
-        REFERENCES producto ( id_produtco );
+    ADD CONSTRAINT cuenta_producto_fk FOREIGN KEY ( producto_id_producto )
+        REFERENCES producto ( id_producto );
 
 ALTER TABLE pago
     ADD CONSTRAINT pago_cuenta_fk FOREIGN KEY ( cuenta_origen )
-        REFERENCES cuenta ( producto_id_produtco );
+        REFERENCES cuenta ( producto_id_producto );
 
 ALTER TABLE pago
     ADD CONSTRAINT pago_cuenta_fkv2 FOREIGN KEY ( cuenta_destino )
-        REFERENCES cuenta ( producto_id_produtco );
+        REFERENCES cuenta ( producto_id_producto );
 
 ALTER TABLE pago
     ADD CONSTRAINT pago_empresa_fk FOREIGN KEY ( empresa_id_empresa )
@@ -166,23 +160,23 @@ ALTER TABLE pago
 
 ALTER TABLE retiro
     ADD CONSTRAINT retiro_cuenta_fk FOREIGN KEY ( cuenta_retiro )
-        REFERENCES cuenta ( producto_id_produtco );
+        REFERENCES cuenta ( producto_id_producto );
 
 ALTER TABLE retiro
     ADD CONSTRAINT retiro_movimiento_fk FOREIGN KEY ( movimiento_id_movimiento )
         REFERENCES movimiento ( id_movimiento );
 
 ALTER TABLE seguro
-    ADD CONSTRAINT seguro_producto_fk FOREIGN KEY ( producto_id_produtco )
-        REFERENCES producto ( id_produtco );
+    ADD CONSTRAINT seguro_producto_fk FOREIGN KEY ( producto_id_producto )
+        REFERENCES producto ( id_producto );
 
 ALTER TABLE tarjeta_de_credito
-    ADD CONSTRAINT tarjeta_de_credito_producto_fk FOREIGN KEY ( producto_id_produtco )
-        REFERENCES producto ( id_produtco );
+    ADD CONSTRAINT tarjeta_de_credito_producto_fk FOREIGN KEY ( producto_id_producto )
+        REFERENCES producto ( id_producto );
 
 ALTER TABLE transferencia
     ADD CONSTRAINT transferencia_cuenta_fk FOREIGN KEY ( cuenta_destino )
-        REFERENCES cuenta ( producto_id_produtco );
+        REFERENCES cuenta ( producto_id_producto );
 
 ALTER TABLE transferencia
     ADD CONSTRAINT transferencia_movimiento_fk FOREIGN KEY ( movimiento_id_movimiento )

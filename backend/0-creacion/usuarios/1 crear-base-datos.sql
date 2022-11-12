@@ -117,16 +117,18 @@ CREATE TABLE tipo (
 ALTER TABLE tipo ADD CONSTRAINT tipo_pk PRIMARY KEY ( id_tipo );
 
 CREATE TABLE turno_empleado (
+    codigo          INTEGER,
     hora_inicio     DATE NOT NULL,
     hora_fin        DATE NOT NULL,
     id_caja         INTEGER NOT NULL,
     cedula_empleado VARCHAR2(20) NOT NULL
 );
 
-ALTER TABLE turno_empleado ADD CONSTRAINT turno_empleado_pk PRIMARY KEY ( id_caja,
-                                                                          cedula_empleado,
-                                                                          hora_inicio,
-                                                                          hora_fin );
+ALTER TABLE turno_empleado ADD CONSTRAINT turno_empleado_pk PRIMARY KEY ( codigo );
+ALTER TABLE turno_empleado ADD CONSTRAINT turno_empleado_U  UNIQUE ( hora_inicio,
+                                                                     hora_fin,        
+                                                                     id_caja,
+                                                                     cedula_empleado);
 
 ALTER TABLE persona
     ADD CONSTRAINT ciudad_fk FOREIGN KEY ( id_ciudad )
