@@ -38,19 +38,26 @@ ALTER TABLE credito ADD CONSTRAINT credito_pk PRIMARY KEY ( producto_id_producto
 
 CREATE TABLE cuenta (
     saldo                  NUMBER,
-    cliente_persona_cedula VARCHAR2(20) NOT NULL,
+    cliente_persona_cedula VARCHAR2(20) ,
     tipo_id_tipo           VARCHAR2(20) NOT NULL,
-    producto_id_producto   VARCHAR2(24) NOT NULL
+    producto_id_producto   VARCHAR2(24) NOT NULL,
+    empresa_id_empresa     INTEGER  
+    
 );
 
 ALTER TABLE cuenta ADD CONSTRAINT cuenta_pk PRIMARY KEY ( producto_id_producto );
 
+
 CREATE TABLE empresa (
     nombre     VARCHAR2(40),
     id_empresa INTEGER NOT NULL
+
 );
 
 ALTER TABLE empresa ADD CONSTRAINT empresa_pk PRIMARY KEY ( id_empresa );
+
+
+ALTER TABLE cuenta ADD CONSTRAINT empresa_fk FOREIGN KEY (empresa_id_empresa) REFERENCES empresa (id_empresa);
 
 CREATE TABLE forma_pago (
     forma_pago VARCHAR2(40) NOT NULL
