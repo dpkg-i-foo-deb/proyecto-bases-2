@@ -75,7 +75,8 @@ ALTER TABLE persona ADD CONSTRAINT correo_un UNIQUE ( correo_electronico );
 
 CREATE TABLE producto_ofertado (
     id_producto VARCHAR2(24) NOT NULL,
-    id_registro INTEGER NOT NULL
+    id_registro INTEGER NOT NULL,
+    aceptado    CHAR(1) NOT NULL
 );
 
 ALTER TABLE producto_ofertado ADD CONSTRAINT producto_ofertado_pk PRIMARY KEY ( id_producto,
