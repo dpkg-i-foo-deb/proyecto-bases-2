@@ -85,7 +85,8 @@ CREATE TABLE pago (
 ALTER TABLE pago ADD CONSTRAINT pago_pk PRIMARY KEY ( movimiento_id_movimiento );
 
 CREATE TABLE producto (
-    id_producto VARCHAR2(24) NOT NULL
+    id_producto VARCHAR2(24) NOT NULL,
+    tipo_id_tipo INTEGER NOT NULL
 );
 
 ALTER TABLE producto ADD CONSTRAINT producto_pk PRIMARY KEY ( id_producto );

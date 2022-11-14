@@ -112,7 +112,7 @@ ALTER TABLE telefono ADD CONSTRAINT telefono_pk PRIMARY KEY ( telefono );
 CREATE TABLE tipo (
     id_tipo     INTEGER NOT NULL,
     descripcion VARCHAR2(100) NOT NULL,
-    categoria   VARCHAR2(100) NOT NULL
+    categoria   VARCHAR2(100) 
 );
 
 ALTER TABLE tipo ADD CONSTRAINT tipo_pk PRIMARY KEY ( id_tipo );
