@@ -121,7 +121,7 @@ CREATE TABLE turno_empleado (
     codigo          INTEGER,
     hora_inicio     DATE NOT NULL,
     hora_fin        DATE NOT NULL,
-    id_caja         INTEGER NOT NULL,
+    id_caja         INTEGER,
     cedula_empleado VARCHAR2(20) NOT NULL
 );
 
