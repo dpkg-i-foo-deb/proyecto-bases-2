@@ -76,9 +76,10 @@ ALTER TABLE movimiento ADD CONSTRAINT movimiento_pk PRIMARY KEY ( id_movimiento 
 
 CREATE TABLE pago (
     movimiento_id_movimiento INTEGER NOT NULL,
-    empresa_id_empresa       INTEGER NOT NULL,
-    cuenta_origen            VARCHAR2(24) NOT NULL,
-    cuenta_destino           VARCHAR2(24) NOT NULL
+    empresa_id_empresa       INTEGER,
+    cuenta_origen            VARCHAR2(24),
+    cuenta_destino           VARCHAR2(24),
+    factura_id_factura       INTEGER NOT NULL
 );
 
 ALTER TABLE pago ADD CONSTRAINT pago_pk PRIMARY KEY ( movimiento_id_movimiento );

@@ -46,7 +46,7 @@ CREATE TABLE factura (
     fecha_vencimiento DATE NOT NULL,
     descripcion       VARCHAR2(40) NOT NULL,
     id_producto       VARCHAR2(24) NOT NULL,
-    cedula_cliente    VARCHAR2(20) NOT NULL
+    cedula_cliente    VARCHAR2(20) 
 );
 
 ALTER TABLE factura ADD CONSTRAINT factura_pk PRIMARY KEY ( id_factura );

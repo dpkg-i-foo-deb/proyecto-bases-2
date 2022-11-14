@@ -22,7 +22,8 @@ CREATE TABLE solicitud (
     cedula_persona  VARCHAR2(20) NOT NULL,
     cedula_empleado VARCHAR2(20) NOT NULL,
     id_tipo         VARCHAR2(20) NOT NULL,
-    id_producto     VARCHAR2(24) NOT NULL
+    id_producto     VARCHAR2(24) NOT NULL,
+    aceptada        CHAR(1)
 );
 
 ALTER TABLE solicitud ADD CONSTRAINT solicitud_pk PRIMARY KEY ( id_solicitud );
