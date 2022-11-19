@@ -486,10 +486,10 @@ INSERT INTO USUARIOS.TIPO
 VALUES(5, 'Empleado', 'Cajero');
 INSERT INTO USUARIOS.TIPO
 (ID_TIPO, DESCRIPCION, CATEGORIA)
-VALUES(6, 'Empleado', 'Jefe de oficina');
+VALUES(6, 'Empleado', 'Jefe_de_oficina');
 INSERT INTO USUARIOS.TIPO
 (ID_TIPO, DESCRIPCION, CATEGORIA)
-VALUES(7, 'Empleado', 'Analista de créditos');
+VALUES(7, 'Empleado', 'Analista_de_creditos');
 INSERT INTO USUARIOS.TIPO
 (ID_TIPO, DESCRIPCION, CATEGORIA)
 VALUES(8, 'Empleado', 'CEO');
@@ -501,7 +501,7 @@ INSERT INTO USUARIOS.TIPO
 VALUES(10, 'Empleado', 'Vicepresidente');
 INSERT INTO USUARIOS.TIPO
 (ID_TIPO, DESCRIPCION, CATEGORIA)
-VALUES(11, 'Empleado', 'Director de departamento');
+VALUES(11, 'Empleado', 'Director_de_departamento');
 INSERT INTO USUARIOS.TIPO
 (ID_TIPO, DESCRIPCION, CATEGORIA)
 VALUES(12, 'Empleado', 'Supervisor');
