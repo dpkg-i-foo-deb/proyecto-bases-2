@@ -38,16 +38,22 @@ CREATE OR REPLACE TRIGGER dis_solicitud_fk
         OPEN cur_clientes;
         OPEN cur_empleados;
         OPEN cur_productos;
+        OPEN cur_tipos;
+        
+        FETCH cur_empleados INTO var_empleado;
+        FETCH cur_productos INTO var_producto;
+        FETCH cur_tipos INTO var_tipo;
+        FETCH cur_clientes INTO var_cliente;
         
         --Verifico si el cliente existe
-        
-        FETCH cur_clientes INTO var_cliente;
+
         
         IF cur_clientes%NOTFOUND THEN
             
             CLOSE cur_clientes;
             CLOSE cur_empleados;
             CLOSE cur_productos;
+            CLOSE cur_tipos;
             
             RAISE_APPLICATION_ERROR(-20001,'El cliente no existe');
             
@@ -61,6 +67,7 @@ CREATE OR REPLACE TRIGGER dis_solicitud_fk
             CLOSE cur_clientes;
             CLOSE cur_empleados;
             CLOSE cur_productos;
+             CLOSE cur_tipos;
             
             RAISE_APPLICATION_ERROR(-20001,'El empleado no existe');
             
@@ -73,8 +80,21 @@ CREATE OR REPLACE TRIGGER dis_solicitud_fk
             CLOSE cur_clientes;
             CLOSE cur_empleados;
             CLOSE cur_productos;
+            CLOSE cur_tipos;
             
             RAISE_APPLICATION_ERROR(-20001,'El producto no existe');
+            
+        END IF;
+        
+        -- Verifico si el tipo existe
+        IF cur_tipos%NOTFOUND THEN
+            
+            CLOSE cur_clientes;
+            CLOSE cur_empleados;
+            CLOSE cur_productos;
+            CLOSE cur_tipos;
+            
+            RAISE_APPLICATION_ERROR(-20001,'El tipo no existe');
             
         END IF;
         
