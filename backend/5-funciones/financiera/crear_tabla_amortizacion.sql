@@ -7,13 +7,18 @@ CREATE OR REPLACE FUNCTION crear_tabla_amortizacion (
 RETURN t_tabla_amortizacion AS
         v_tabla_amortizacion t_tabla_amortizacion;
      
+     CURSOR  cur_empleados IS
+     SELECT e.CEDULA_PERSONA FROM EMPLEADO e
+     WHERE e.cedula_persona = v_codigo_empleado;
+     
      --Variables
+     v_empleado         cur_empleados%ROWTYPE;
      v_capital          NUMBER;
      v_monto_prestamo   NUMBER;
      v_plazo            NUMBER;
      v_numero_cuotas    NUMBER;
      v_periodos         NUMBER;
-     v_forma_pago       VARCHAR2(30); 
+     v_forma_pago       VARCHAR2(30);
      v_interes          NUMBER;
      v_tasa_interes     NUMBER;
      v_saldo            NUMBER;
@@ -23,6 +28,14 @@ RETURN t_tabla_amortizacion AS
      
     
 BEGIN 
+
+    OPEN cur_empleados;
+    FETCH cur_empleados INTO v_empleado;
+    
+    IF cur_empleados%NOTFOUND THEN 
+    raise_application_error(-20001, 'La cédula del empleado no fue encontrada');
+    END IF;
+
     --llamo el contructor 
     v_tabla_amortizacion := t_tabla_amortizacion();
     
@@ -50,12 +63,10 @@ BEGIN
     crear_solicitud@enlace_seguimiento(dbms_random.value(9,99), SYSDATE ,v_cedula_persona , v_codigo_empleado, '41', v_codigo_credito, 'Y');
    
     --Añado un registro a la tabla que retorno 
-    
      dbms_output.put_line('0'||'    '||'    '||ROUND(v_cuota,2)||'    '||ROUND(v_capital,2)||'    '||ROUND(v_interes,2)||'    '||ROUND(v_saldo,2));
      v_tabla_amortizacion.extend;
      v_tabla_amortizacion(v_tabla_amortizacion.count) := t_registro_amortizacion(0,ROUND(v_cuota,2), round(v_capital,2), ROUND(v_interes,2), ROUND(v_saldo,2));
-    
-
+     
     --Recalculando el saldo
     FOR contador IN 1 .. v_numero_cuotas LOOP
      dbms_output.put_line(contador||'    '||'    '||ROUND(v_cuota,2)||'    '||ROUND(v_capital,2)||'    '||ROUND(v_interes,2)||'    '||ROUND(v_saldo,2));
@@ -64,7 +75,7 @@ BEGIN
      v_tabla_amortizacion(v_tabla_amortizacion.count) := t_registro_amortizacion(contador,ROUND(v_cuota,2), round(v_capital,2), ROUND(v_interes,2), ROUND(v_saldo,2));
     END LOOP;
    
-
+    
     return v_tabla_amortizacion;
 END;
 
