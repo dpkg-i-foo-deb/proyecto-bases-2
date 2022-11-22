@@ -1,5 +1,6 @@
+-- Ejecutar como DBA, de otra manera no funciona, Oracle raro
 CREATE OR REPLACE TRIGGER dis_abono
-    FOR INSERT ON SEGUIMIENTO.ABONO_VISTA
+    FOR INSERT ON SEGUIMIENTO.ABONO
     COMPOUND TRIGGER 
     
         CURSOR cur_tarjetas IS 
@@ -32,9 +33,9 @@ CREATE OR REPLACE TRIGGER dis_abono
        
        OPEN cur_movimientos;
        
-       FETCH cur_movimiento INTO var_movimiento;
+       FETCH cur_movimientos INTO var_movimiento;
        
-       IF cur_tarjetas%NOTFOUND OR cur_movimiento%NOTFOUND THEN
+       IF cur_tarjetas%NOTFOUND OR cur_movimientos%NOTFOUND THEN
        
         CLOSE cur_tarjetas;
         CLOSE cur_movimientos;
@@ -55,12 +56,7 @@ CREATE OR REPLACE TRIGGER dis_abono
        
        CLOSE cur_tarjetas;
        CLOSE cur_movimientos;
-       
-       --Todo ha salido bien y podemos insertar
-       
-       INSERT INTO SEGUIMIENTO.ABONO
-        (ID_MOVIMIENTO, ID_PRODUCTO)
-        VALUES(:NEW.ID_MOVIMIENTO,:NEW.ID_PRODUCTO);
+
 
        
      END BEFORE EACH ROW;
